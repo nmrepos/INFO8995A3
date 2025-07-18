@@ -209,36 +209,32 @@ Below are screenshots for each major step of the deployment process.
    
    ![Initialize submodules & Start cluster](screenshots/Screenshot%20(1060).png)
 
-4. **Deploy Gitea using Ansible**
+3. **Deploy Gitea using Ansible**
    
    ![Deploy Gitea](screenshots/Screenshot%20(1061).png)
 
-5. **Check Gitea pods**
+4. **Check Gitea pods & Port-forward to access Gitea locally**
    
-   ![Check pods](screenshots/Screenshot%20(1062).png)
+   ![Check pods](screenshots/image.png)
 
-6. **Port-forward to access Gitea locally**
+5. **Access Gitea Web UI Locally**
    
-   ![Port-forward](screenshots/Screenshot%20(1063).png)
+   ![Gitea Web UI Locally](screenshots/Screenshot%20(1071).png)
 
-7. **Access Gitea Web UI Locally**
+6. **Apply ngrok manifest**
    
-   ![Gitea Web UI Locally](screenshots/Screenshot%20(1064).png)
+   ![Apply ngrok](screenshots/Screenshot%20(1076).png)
 
-7. **Apply ngrok manifest**
+7. **Check ngrok agent details**
    
-   ![Apply ngrok](screenshots/Screenshot%20(1065).png)
+   ![ngrok logs](screenshots/Screenshot%20(1073).png)
 
-8. **Check ngrok agent details**
+8. **Access the ngrok endpoints**
    
-   ![ngrok logs](screenshots/Screenshot%20(1066).png)
+   ![ngrok URL](screenshots/Screenshot%20(1074).png)
 
-9. **Access the ngrok endpoints**
+9. **Access Gitea via ngrok public URL**
    
-   ![ngrok URL](screenshots/Screenshot%20(1067).png)
-
-10. **Access Gitea via ngrok public URL**
-   
-   ![Gitea UI](screenshots/Screenshot%20(1068).png)
+   ![Gitea UI](screenshots/Screenshot%20(1075).png)
 
 ---

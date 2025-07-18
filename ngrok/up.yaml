@@ -12,7 +12,7 @@ type: Opaque
 data:
   # Replace the value below with your own base64-encoded ngrok authtoken
   # echo -n 'YOUR_NGROK_AUTHTOKEN' | base64
-  authtoken: REPLACE_WITH_BASE64_NGROK_TOKEN
+  authtoken: YOUR_NGROK_AUTHTOKEN
 ---
 apiVersion: apps/v1
 kind: Deployment

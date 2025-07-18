@@ -8,7 +8,7 @@
   - name: Deploy MySQL database
     kubernetes.core.k8s:
       state: present
-      definition: "{{ lookup('file', 'gitea/mysql-deployment.yaml') }}"
+      definition: "{{ lookup('file', './mysql-deployment.yaml') }}"
   - name: Deploy latest version of gitea
     kubernetes.core.helm:
       name: gitea
