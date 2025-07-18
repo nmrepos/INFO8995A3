@@ -7,14 +7,9 @@ postgresql:
 postgresql-ha:
   enabled: false
 
-# Enable MySQL as external database for production
+# Disable the chart's built-in MySQL since we're deploying it manually
 mysql:
-  enabled: true
-  auth:
-    rootPassword: "gitea-root-password"
-    database: "gitea"
-    username: "gitea"
-    password: "gitea-password"
+  enabled: false
 
 # Enable persistent storage for repository data
 persistence:
