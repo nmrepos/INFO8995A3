@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+  vars:
+    values_file: "{{ values_file | default('values.yaml') }}"
   tasks:
   - name: Add gitea chart repo
     kubernetes.core.helm_repository:
@@ -11,4 +13,4 @@
       chart_ref: gitea-charts/gitea
       release_namespace: default
       values_files:
-      - values.yaml
+      - "{{ values_file }}"

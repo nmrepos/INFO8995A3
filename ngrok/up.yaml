@@ -32,13 +32,20 @@ spec:
       containers:
       - name: ngrok
         image: ngrok/ngrok:latest
-        args: ["http", "gitea-http.default.svc.cluster.local:3000"]
+        args: ["http", "--log", "stdout", "gitea-http.default.svc.cluster.local:3000"]
         env:
         - name: NGROK_AUTHTOKEN
           valueFrom:
             secretKeyRef:
               name: ngrok-secret
               key: authtoken
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
 ---
 apiVersion: v1
 kind: Service

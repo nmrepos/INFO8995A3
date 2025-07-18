@@ -1,22 +1,42 @@
 redis-cluster:
   enabled: false
 redis:
-  enabled: false
+  enabled: true
 postgresql:
   enabled: false
 postgresql-ha:
   enabled: false
 
+# Enable MySQL as external database for production
+mysql:
+  enabled: true
+  auth:
+    rootPassword: "gitea-root-password"
+    database: "gitea"
+    username: "gitea"
+    password: "gitea-password"
+
+# Enable persistent storage for repository data
 persistence:
-  enabled: false
+  enabled: true
+  size: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClass: ""
 
 gitea:
   config:
     database:
-      DB_TYPE: sqlite3
+      DB_TYPE: mysql
+      HOST: gitea-mysql:3306
+      NAME: gitea
+      USER: gitea
+      PASSWD: gitea-password
     session:
-      PROVIDER: memory
+      PROVIDER: db
     cache:
-      ADAPTER: memory
+      ADAPTER: redis
+      HOST: redis://gitea-redis:6379/0
     queue:
-      TYPE: level
+      TYPE: redis
+      CONN_STR: redis://gitea-redis:6379/0
