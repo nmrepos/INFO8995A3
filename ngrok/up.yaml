@@ -10,7 +10,9 @@ metadata:
   namespace: ngrok
 type: Opaque
 data:
-  authtoken: MzAzakg0TnZnUERlRFFoTVVDSm1wNG1WTm84XzJDZXdwaGoxaGhEY1VYY0FRZ2lMZg==
+  # Replace the value below with your own base64-encoded ngrok authtoken
+  # echo -n 'YOUR_NGROK_AUTHTOKEN' | base64
+  authtoken: REPLACE_WITH_BASE64_NGROK_TOKEN
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -30,7 +32,7 @@ spec:
       containers:
       - name: ngrok
         image: ngrok/ngrok:latest
-        args: ["http", "gitea.gitea.svc.cluster.local:3000"]
+        args: ["http", "gitea-http.default.svc.cluster.local:3000"]
         env:
         - name: NGROK_AUTHTOKEN
           valueFrom:
