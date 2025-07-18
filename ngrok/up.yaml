@@ -1,0 +1,58 @@
+# ngrok Kubernetes manifest for exposing Gitea externally
+# Replace <your-ngrok-authtoken> and <your-ngrok-domain> as needed
+# External URL: https://the-domain-that-you-got.ngrok-free.app
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ngrok
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ngrok-secret
+  namespace: ngrok
+type: Opaque
+data:
+  # echo -n '<your-ngrok-authtoken>' | base64
+  authtoken: <base64-encoded-ngrok-authtoken>
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ngrok
+  namespace: ngrok
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ngrok
+  template:
+    metadata:
+      labels:
+        app: ngrok
+    spec:
+      containers:
+      - name: ngrok
+        image: ngrok/ngrok:latest
+        args: ["http", "--domain=the-domain-that-you-got.ngrok-free.app", "--authtoken-from-env", "gitea.gitea.svc.cluster.local:3000"]
+        env:
+        - name: NGROK_AUTHTOKEN
+          valueFrom:
+            secretKeyRef:
+              name: ngrok-secret
+              key: authtoken
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ngrok
+  namespace: ngrok
+spec:
+  type: ClusterIP
+  selector:
+    app: ngrok
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
