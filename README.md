@@ -52,7 +52,7 @@ ngrok exposed at:
 8. **Check ngrok pod and logs:**
    ```bash
    kubectl get pods -n ngrok
-   kubectl logs -n ngrok deployment/ngrok
+   kubectl logs -n ngrok -l app=ngrok
    ```
 
 9. **Visit the ngrok URL:**
